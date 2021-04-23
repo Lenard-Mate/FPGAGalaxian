@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2021-04-22T14:25:37</DateModified>
+  <DateModified>2021-04-23T18:15:15</DateModified>
   <ModuleName>proiectVGA</ModuleName>
   <SummaryTimeStamp>2021-04-07T19:37:10</SummaryTimeStamp>
-  <SavedFilePath>C:/TemeISE/ProiectVga/iseconfig/proiectVGA.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/TemeISE/ProiectVga\</ImplementationReportsDirectory>
+  <SavedFilePath>C:/TemeISE/ProiectVga/FPGAGalaxian/iseconfig/proiectVGA.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>C:/TemeISE/ProiectVga/FPGAGalaxian\</ImplementationReportsDirectory>
   <DateInitialized>2021-04-07T18:24:35</DateInitialized>
   <EnableMessageFiltering>true</EnableMessageFiltering>
  </header>

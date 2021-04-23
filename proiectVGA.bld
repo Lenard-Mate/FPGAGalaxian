@@ -5,7 +5,7 @@ Command Line: D:\ISESOFT\14.7\ISE_DS\ISE\bin\nt64\unwrapped\ngdbuild.exe -filter
 iseconfig/filter.filter -intstyle ise -dd _ngo -nt timestamp -uc fisierUcf.ucf
 -p xc6slx9-csg324-2 proiectVGA.ngc proiectVGA.ngd
 
-Reading NGO file "C:/TemeISE/ProiectVga/proiectVGA.ngc" ...
+Reading NGO file "C:/TemeISE/ProiectVga/FPGAGalaxian/proiectVGA.ngc" ...
 Gathering constraint information from source properties...
 Done.
 
@@ -31,7 +31,7 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   0
 
-Total memory usage is 4414448 kilobytes
+Total memory usage is 4414444 kilobytes
 
 Writing NGD file "proiectVGA.ngd" ...
 Total REAL time to NGDBUILD completion:  3 sec

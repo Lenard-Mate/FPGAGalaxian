@@ -3,13 +3,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
+Total REAL time to Xst completion: 1.00 secs
 Total CPU time to Xst completion: 0.10 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 0.00 secs
+Total REAL time to Xst completion: 1.00 secs
 Total CPU time to Xst completion: 0.10 secs
  
 --> Reading design: proiectVGA.prj
@@ -105,7 +105,7 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Analyzing Verilog file "C:\TemeISE\ProiectVga\proiectVGA.v" into library work
+Analyzing Verilog file "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v" into library work
 Parsing module <proiectVGA>.
 Parsing module <slow_clock>.
 Parsing module <music>.
@@ -117,12 +117,12 @@ Parsing module <music_ROM>.
 =========================================================================
 
 Elaborating module <proiectVGA>.
-WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\proiectVGA.v" Line 118: Result of 32-bit expression is truncated to fit in 10-bit target.
-WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\proiectVGA.v" Line 119: Result of 11-bit expression is truncated to fit in 10-bit target.
-WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\proiectVGA.v" Line 120: Result of 32-bit expression is truncated to fit in 10-bit target.
-WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\proiectVGA.v" Line 121: Result of 11-bit expression is truncated to fit in 10-bit target.
-WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\proiectVGA.v" Line 144: Result of 10-bit expression is truncated to fit in 5-bit target.
-WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\proiectVGA.v" Line 145: Result of 10-bit expression is truncated to fit in 5-bit target.
+WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v" Line 102: Result of 32-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v" Line 103: Result of 11-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v" Line 104: Result of 32-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v" Line 105: Result of 11-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v" Line 119: Result of 10-bit expression is truncated to fit in 5-bit target.
+WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v" Line 120: Result of 10-bit expression is truncated to fit in 5-bit target.
 
 Elaborating module <slow_clock>.
 
@@ -131,18 +131,18 @@ Elaborating module <music>.
 Elaborating module <music_ROM>.
 
 Elaborating module <divide_by12>.
-WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\proiectVGA.v" Line 350: Result of 9-bit expression is truncated to fit in 8-bit target.
-WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\proiectVGA.v" Line 467: Result of 11-bit expression is truncated to fit in 10-bit target.
-WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\proiectVGA.v" Line 472: Result of 11-bit expression is truncated to fit in 10-bit target.
-WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\proiectVGA.v" Line 500: Result of 3-bit expression is truncated to fit in 2-bit target.
-WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\proiectVGA.v" Line 527: Result of 22-bit expression is truncated to fit in 21-bit target.
+WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v" Line 275: Result of 9-bit expression is truncated to fit in 8-bit target.
+WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v" Line 393: Result of 11-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v" Line 400: Result of 11-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v" Line 435: Result of 3-bit expression is truncated to fit in 2-bit target.
+WARNING:HDLCompiler:413 - "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v" Line 459: Result of 22-bit expression is truncated to fit in 21-bit target.
 
 =========================================================================
 *                           HDL Synthesis                               *
 =========================================================================
 
 Synthesizing Unit <proiectVGA>.
-    Related source file is "C:\TemeISE\ProiectVga\proiectVGA.v".
+    Related source file is "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v".
         h_pulse = 96
         h_bp = 48
         h_pixels = 640
@@ -189,97 +189,97 @@ Synthesizing Unit <proiectVGA>.
     Found 10-bit register for signal <c_row>.
     Found 10-bit register for signal <c_col>.
     Found 2-bit register for signal <clk_div>.
-    Found 32-bit subtractor for signal <right_counter[31]_GND_1_o_sub_60_OUT> created at line 260.
-    Found 32-bit subtractor for signal <GND_1_o_munition_position[31]_sub_166_OUT> created at line 419.
-    Found 32-bit subtractor for signal <GND_1_o_munition_position[31]_sub_168_OUT> created at line 419.
-    Found 2-bit adder for signal <clk_div[1]_GND_1_o_add_1_OUT> created at line 86.
-    Found 10-bit adder for signal <r_sq_pos_x> created at line 119.
-    Found 10-bit adder for signal <d_sq_pos_y> created at line 121.
-    Found 2-bit adder for signal <counter[1]_GND_1_o_add_11_OUT> created at line 159.
-    Found 32-bit adder for signal <right_counter[31]_GND_1_o_add_53_OUT> created at line 244.
-    Found 32-bit adder for signal <munition_position[31]_GND_1_o_add_72_OUT> created at line 293.
-    Found 32-bit adder for signal <faier_counter[31]_GND_1_o_add_88_OUT> created at line 320.
-    Found 32-bit adder for signal <enemyAltitude[31]_GND_1_o_add_94_OUT> created at line 325.
-    Found 32-bit adder for signal <killCounter[31]_GND_1_o_add_104_OUT> created at line 337.
-    Found 8-bit adder for signal <timer_t[7]_GND_1_o_add_124_OUT> created at line 350.
-    Found 10-bit adder for signal <vcount[9]_GND_1_o_add_132_OUT> created at line 364.
-    Found 10-bit adder for signal <hcount[9]_GND_1_o_add_134_OUT> created at line 367.
-    Found 32-bit adder for signal <GND_1_o_right_counter[31]_add_149_OUT> created at line 405.
-    Found 32-bit adder for signal <GND_1_o_right_counter[31]_add_151_OUT> created at line 405.
-    Found 32-bit adder for signal <GND_1_o_right_counter[31]_add_155_OUT> created at line 412.
-    Found 32-bit adder for signal <GND_1_o_right_counter[31]_add_157_OUT> created at line 412.
-    Found 32-bit adder for signal <GND_1_o_munition_position_orizont[31]_add_161_OUT> created at line 419.
-    Found 32-bit adder for signal <GND_1_o_munition_position_orizont[31]_add_163_OUT> created at line 419.
-    Found 32-bit adder for signal <GND_1_o_add[31]_add_169_OUT> created at line 426.
-    Found 32-bit adder for signal <GND_1_o_add[31]_add_171_OUT> created at line 426.
-    Found 32-bit adder for signal <PWR_1_o_enemyAltitude[31]_add_174_OUT> created at line 426.
-    Found 10-bit adder for signal <c_hor[9]_GND_1_o_add_179_OUT> created at line 467.
-    Found 10-bit adder for signal <c_ver[9]_GND_1_o_add_181_OUT> created at line 472.
-    Found 10-bit subtractor for signal <l_sq_pos_x> created at line 113.
-    Found 10-bit subtractor for signal <u_sq_pos_y> created at line 115.
-    Found 5-bit subtractor for signal <sq_fig_x> created at line 141.
-    Found 5-bit subtractor for signal <sq_fig_y> created at line 142.
+    Found 32-bit subtractor for signal <right_counter[31]_GND_1_o_sub_60_OUT> created at line 202.
+    Found 32-bit subtractor for signal <GND_1_o_munition_position[31]_sub_166_OUT> created at line 343.
+    Found 32-bit subtractor for signal <GND_1_o_munition_position[31]_sub_168_OUT> created at line 343.
+    Found 2-bit adder for signal <clk_div[1]_GND_1_o_add_1_OUT> created at line 82.
+    Found 10-bit adder for signal <r_sq_pos_x> created at line 103.
+    Found 10-bit adder for signal <d_sq_pos_y> created at line 105.
+    Found 2-bit adder for signal <counter[1]_GND_1_o_add_11_OUT> created at line 132.
+    Found 32-bit adder for signal <right_counter[31]_GND_1_o_add_53_OUT> created at line 194.
+    Found 32-bit adder for signal <munition_position[31]_GND_1_o_add_72_OUT> created at line 222.
+    Found 32-bit adder for signal <faier_counter[31]_GND_1_o_add_88_OUT> created at line 245.
+    Found 32-bit adder for signal <enemyAltitude[31]_GND_1_o_add_94_OUT> created at line 249.
+    Found 32-bit adder for signal <killCounter[31]_GND_1_o_add_104_OUT> created at line 261.
+    Found 8-bit adder for signal <timer_t[7]_GND_1_o_add_124_OUT> created at line 275.
+    Found 10-bit adder for signal <vcount[9]_GND_1_o_add_132_OUT> created at line 290.
+    Found 10-bit adder for signal <hcount[9]_GND_1_o_add_134_OUT> created at line 293.
+    Found 32-bit adder for signal <GND_1_o_right_counter[31]_add_149_OUT> created at line 329.
+    Found 32-bit adder for signal <GND_1_o_right_counter[31]_add_151_OUT> created at line 329.
+    Found 32-bit adder for signal <GND_1_o_right_counter[31]_add_155_OUT> created at line 336.
+    Found 32-bit adder for signal <GND_1_o_right_counter[31]_add_157_OUT> created at line 336.
+    Found 32-bit adder for signal <GND_1_o_munition_position_orizont[31]_add_161_OUT> created at line 343.
+    Found 32-bit adder for signal <GND_1_o_munition_position_orizont[31]_add_163_OUT> created at line 343.
+    Found 32-bit adder for signal <GND_1_o_add[31]_add_169_OUT> created at line 350.
+    Found 32-bit adder for signal <GND_1_o_add[31]_add_171_OUT> created at line 350.
+    Found 32-bit adder for signal <PWR_1_o_enemyAltitude[31]_add_174_OUT> created at line 350.
+    Found 10-bit adder for signal <c_hor[9]_GND_1_o_add_179_OUT> created at line 393.
+    Found 10-bit adder for signal <c_ver[9]_GND_1_o_add_181_OUT> created at line 400.
+    Found 10-bit subtractor for signal <l_sq_pos_x> created at line 97.
+    Found 10-bit subtractor for signal <u_sq_pos_y> created at line 99.
+    Found 5-bit subtractor for signal <sq_fig_x> created at line 116.
+    Found 5-bit subtractor for signal <sq_fig_y> created at line 117.
     Found 16x8-bit Read Only RAM for signal <_n0640>
     Found 16x8-bit Read Only RAM for signal <_n0663>
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_202_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_203_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_204_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_205_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_206_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_207_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_208_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_209_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_210_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_211_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_212_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_213_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_214_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_215_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_216_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_217_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_218_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_219_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_220_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_221_o> created at line 497.
-    Found 1-bit 20-to-1 multiplexer for signal <GND_1_o_GND_1_o_equal_224_o> created at line 497.
-    Found 32-bit comparator lessequal for signal <n0076> created at line 324
-    Found 32-bit comparator lessequal for signal <n0080> created at line 331
-    Found 32-bit comparator lessequal for signal <n0082> created at line 331
-    Found 32-bit comparator lessequal for signal <n0085> created at line 331
-    Found 8-bit comparator greater for signal <PWR_1_o_timer_t[7]_LessThan_124_o> created at line 345
-    Found 32-bit comparator greater for signal <GND_1_o_killCounter[31]_LessThan_129_o> created at line 355
-    Found 10-bit comparator lessequal for signal <n0121> created at line 370
-    Found 10-bit comparator greater for signal <vcount[9]_GND_1_o_LessThan_139_o> created at line 370
-    Found 10-bit comparator lessequal for signal <n0126> created at line 375
-    Found 10-bit comparator greater for signal <hcount[9]_PWR_1_o_LessThan_141_o> created at line 375
-    Found 10-bit comparator greater for signal <c_hor[9]_PWR_1_o_LessThan_144_o> created at line 383
-    Found 10-bit comparator greater for signal <PWR_1_o_c_hor[9]_LessThan_145_o> created at line 383
-    Found 10-bit comparator greater for signal <c_ver[9]_GND_1_o_LessThan_146_o> created at line 389
-    Found 10-bit comparator greater for signal <GND_1_o_c_ver[9]_LessThan_147_o> created at line 389
-    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_151_o> created at line 405
-    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_153_o> created at line 405
-    Found 10-bit comparator greater for signal <vcount[9]_GND_1_o_LessThan_154_o> created at line 405
-    Found 10-bit comparator greater for signal <GND_1_o_vcount[9]_LessThan_155_o> created at line 405
-    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_157_o> created at line 412
-    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_159_o> created at line 412
-    Found 10-bit comparator greater for signal <vcount[9]_GND_1_o_LessThan_160_o> created at line 412
-    Found 10-bit comparator greater for signal <GND_1_o_vcount[9]_LessThan_161_o> created at line 412
-    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_163_o> created at line 419
-    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_165_o> created at line 419
-    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_167_o> created at line 419
-    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_169_o> created at line 419
-    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_171_o> created at line 426
-    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_173_o> created at line 426
-    Found 32-bit comparator greater for signal <GND_1_o_enemyAltitude[31]_LessThan_174_o> created at line 426
-    Found 32-bit comparator greater for signal <PWR_1_o_GND_1_o_LessThan_176_o> created at line 426
-    Found 10-bit comparator greater for signal <c_hor[9]_PWR_1_o_LessThan_179_o> created at line 466
-    Found 10-bit comparator greater for signal <c_ver[9]_PWR_1_o_LessThan_181_o> created at line 471
-    Found 10-bit comparator greater for signal <c_hor[9]_PWR_1_o_LessThan_195_o> created at line 486
-    Found 10-bit comparator greater for signal <c_ver[9]_GND_1_o_LessThan_196_o> created at line 486
-    Found 10-bit comparator greater for signal <l_sq_pos_x[9]_c_col[9]_LessThan_199_o> created at line 493
-    Found 10-bit comparator greater for signal <c_col[9]_r_sq_pos_x[9]_LessThan_200_o> created at line 493
-    Found 10-bit comparator greater for signal <u_sq_pos_y[9]_c_row[9]_LessThan_201_o> created at line 493
-    Found 10-bit comparator greater for signal <c_row[9]_d_sq_pos_y[9]_LessThan_202_o> created at line 493
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_202_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_203_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_204_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_205_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_206_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_207_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_208_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_209_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_210_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_211_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_212_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_213_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_214_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_215_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_216_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_217_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_218_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_219_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_220_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <sq_fig_y[4]_X_1_o_Mux_221_o> created at line 431.
+    Found 1-bit 20-to-1 multiplexer for signal <GND_1_o_GND_1_o_equal_224_o> created at line 431.
+    Found 32-bit comparator lessequal for signal <n0076> created at line 247
+    Found 32-bit comparator lessequal for signal <n0080> created at line 255
+    Found 32-bit comparator lessequal for signal <n0082> created at line 255
+    Found 32-bit comparator lessequal for signal <n0085> created at line 255
+    Found 8-bit comparator greater for signal <PWR_1_o_timer_t[7]_LessThan_124_o> created at line 268
+    Found 32-bit comparator greater for signal <GND_1_o_killCounter[31]_LessThan_129_o> created at line 280
+    Found 10-bit comparator lessequal for signal <n0121> created at line 294
+    Found 10-bit comparator greater for signal <vcount[9]_GND_1_o_LessThan_139_o> created at line 294
+    Found 10-bit comparator lessequal for signal <n0126> created at line 298
+    Found 10-bit comparator greater for signal <hcount[9]_PWR_1_o_LessThan_141_o> created at line 298
+    Found 10-bit comparator greater for signal <c_hor[9]_PWR_1_o_LessThan_144_o> created at line 308
+    Found 10-bit comparator greater for signal <PWR_1_o_c_hor[9]_LessThan_145_o> created at line 308
+    Found 10-bit comparator greater for signal <c_ver[9]_GND_1_o_LessThan_146_o> created at line 316
+    Found 10-bit comparator greater for signal <GND_1_o_c_ver[9]_LessThan_147_o> created at line 316
+    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_151_o> created at line 329
+    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_153_o> created at line 329
+    Found 10-bit comparator greater for signal <vcount[9]_GND_1_o_LessThan_154_o> created at line 329
+    Found 10-bit comparator greater for signal <GND_1_o_vcount[9]_LessThan_155_o> created at line 329
+    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_157_o> created at line 336
+    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_159_o> created at line 336
+    Found 10-bit comparator greater for signal <vcount[9]_GND_1_o_LessThan_160_o> created at line 336
+    Found 10-bit comparator greater for signal <GND_1_o_vcount[9]_LessThan_161_o> created at line 336
+    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_163_o> created at line 343
+    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_165_o> created at line 343
+    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_167_o> created at line 343
+    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_169_o> created at line 343
+    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_171_o> created at line 350
+    Found 32-bit comparator greater for signal <GND_1_o_GND_1_o_LessThan_173_o> created at line 350
+    Found 32-bit comparator greater for signal <GND_1_o_enemyAltitude[31]_LessThan_174_o> created at line 350
+    Found 32-bit comparator greater for signal <PWR_1_o_GND_1_o_LessThan_176_o> created at line 350
+    Found 10-bit comparator greater for signal <c_hor[9]_PWR_1_o_LessThan_179_o> created at line 391
+    Found 10-bit comparator greater for signal <c_ver[9]_PWR_1_o_LessThan_181_o> created at line 398
+    Found 10-bit comparator greater for signal <c_hor[9]_PWR_1_o_LessThan_195_o> created at line 416
+    Found 10-bit comparator greater for signal <c_ver[9]_GND_1_o_LessThan_196_o> created at line 416
+    Found 10-bit comparator greater for signal <l_sq_pos_x[9]_c_col[9]_LessThan_199_o> created at line 426
+    Found 10-bit comparator greater for signal <c_col[9]_r_sq_pos_x[9]_LessThan_200_o> created at line 426
+    Found 10-bit comparator greater for signal <u_sq_pos_y[9]_c_row[9]_LessThan_201_o> created at line 426
+    Found 10-bit comparator greater for signal <c_row[9]_d_sq_pos_y[9]_LessThan_202_o> created at line 426
     Summary:
 	inferred   2 RAM(s).
 	inferred  29 Adder/Subtractor(s).
@@ -289,11 +289,11 @@ Synthesizing Unit <proiectVGA>.
 Unit <proiectVGA> synthesized.
 
 Synthesizing Unit <slow_clock>.
-    Related source file is "C:\TemeISE\ProiectVga\proiectVGA.v".
+    Related source file is "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v".
     Found 1-bit register for signal <Clk_Slow>.
     Found 32-bit register for signal <counter_out>.
-    Found 32-bit adder for signal <counter_out[31]_GND_2_o_add_1_OUT> created at line 550.
-    Found 32-bit comparator greater for signal <GND_2_o_counter_out[31]_LessThan_3_o> created at line 551
+    Found 32-bit adder for signal <counter_out[31]_GND_2_o_add_1_OUT> created at line 480.
+    Found 32-bit comparator greater for signal <GND_2_o_counter_out[31]_LessThan_3_o> created at line 481
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred  33 D-type flip-flop(s).
@@ -301,18 +301,18 @@ Synthesizing Unit <slow_clock>.
 Unit <slow_clock> synthesized.
 
 Synthesizing Unit <music>.
-    Related source file is "C:\TemeISE\ProiectVga\proiectVGA.v".
+    Related source file is "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v".
     Found 50-bit register for signal <count_time>.
     Found 1-bit register for signal <clk_out>.
     Found 9-bit register for signal <counter_note>.
     Found 8-bit register for signal <counter_octave>.
     Found 1-bit register for signal <speaker>.
     Found 31-bit register for signal <tone>.
-    Found 9-bit subtractor for signal <counter_note[8]_GND_3_o_sub_12_OUT> created at line 619.
-    Found 8-bit subtractor for signal <counter_octave[7]_GND_3_o_sub_19_OUT> created at line 620.
-    Found 31-bit adder for signal <tone[30]_GND_3_o_add_1_OUT> created at line 574.
-    Found 50-bit adder for signal <count_time[49]_GND_3_o_add_4_OUT> created at line 581.
-    Found 8-bit shifter logical right for signal <PWR_6_o_octave[2]_shift_right_17_OUT> created at line 620
+    Found 9-bit subtractor for signal <counter_note[8]_GND_3_o_sub_12_OUT> created at line 550.
+    Found 8-bit subtractor for signal <counter_octave[7]_GND_3_o_sub_19_OUT> created at line 551.
+    Found 31-bit adder for signal <tone[30]_GND_3_o_add_1_OUT> created at line 505.
+    Found 50-bit adder for signal <count_time[49]_GND_3_o_add_4_OUT> created at line 512.
+    Found 8-bit shifter logical right for signal <PWR_6_o_octave[2]_shift_right_17_OUT> created at line 551
     Found 16x9-bit Read Only RAM for signal <clkdivider>
     Summary:
 	inferred   1 RAM(s).
@@ -323,7 +323,7 @@ Synthesizing Unit <music>.
 Unit <music> synthesized.
 
 Synthesizing Unit <music_ROM>.
-    Related source file is "C:\TemeISE\ProiectVga\proiectVGA.v".
+    Related source file is "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v".
     Found 8-bit register for signal <note>.
     Found 256x8-bit Read Only RAM for signal <address[7]_GND_4_o_wide_mux_1_OUT>
     Summary:
@@ -332,7 +332,7 @@ Synthesizing Unit <music_ROM>.
 Unit <music_ROM> synthesized.
 
 Synthesizing Unit <divide_by12>.
-    Related source file is "C:\TemeISE\ProiectVga\proiectVGA.v".
+    Related source file is "C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.v".
     Found 16x5-bit Read Only RAM for signal <_n0029>
     Summary:
 	inferred   1 RAM(s).
@@ -1849,11 +1849,11 @@ clock          |    8.131|         |         |         |
 
 
 Total REAL time to Xst completion: 14.00 secs
-Total CPU time to Xst completion: 14.13 secs
+Total CPU time to Xst completion: 13.81 secs
  
 --> 
 
-Total memory usage is 4504264 kilobytes
+Total memory usage is 4504312 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  968 (   0 filtered)

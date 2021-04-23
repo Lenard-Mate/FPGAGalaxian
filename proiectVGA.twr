@@ -3,9 +3,9 @@ Release 14.7 Trace  (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 D:\ISESOFT\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -filter
-C:/TemeISE/ProiectVga/iseconfig/filter.filter -intstyle ise -v 3 -s 2 -n 3
--fastpaths -xml proiectVGA.twx proiectVGA.ncd -o proiectVGA.twr proiectVGA.pcf
--ucf fisierUcf.ucf
+C:/TemeISE/ProiectVga/FPGAGalaxian/iseconfig/filter.filter -intstyle ise -v 3
+-s 2 -n 3 -fastpaths -xml proiectVGA.twx proiectVGA.ncd -o proiectVGA.twr
+proiectVGA.pcf -ucf fisierUcf.ucf
 
 Design file:              proiectVGA.ncd
 Physical constraint file: proiectVGA.pcf
@@ -639,7 +639,7 @@ Design statistics:
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Wed Apr 21 21:16:57 2021 
+Analysis completed Fri Apr 23 18:17:30 2021 
 --------------------------------------------------------------------------------
 
 Trace Settings:

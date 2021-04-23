@@ -1,8 +1,8 @@
 INTSTYLE=ise
-INFILE=C:\TemeISE\ProiectVga\proiectVGA.ncd
-OUTFILE=C:\TemeISE\ProiectVga\proiectVGA.bit
+INFILE=C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.ncd
+OUTFILE=C:\TemeISE\ProiectVga\FPGAGalaxian\proiectVGA.bit
 FAMILY=Spartan6
 PART=xc6slx9-2csg324
-WORKINGDIR=C:\TemeISE\ProiectVga
+WORKINGDIR=C:\TemeISE\ProiectVga\FPGAGalaxian
 LICENSE=WebPack
 USER_INFO=206272055_206273141_0_453

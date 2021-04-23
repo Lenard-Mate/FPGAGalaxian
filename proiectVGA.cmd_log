@@ -1521,3 +1521,15 @@ map -filter "C:/TemeISE/ProiectVga/iseconfig/filter.filter" -intstyle ise -p xc6
 par -filter "C:/TemeISE/ProiectVga/iseconfig/filter.filter" -w -intstyle ise -ol high -mt off proiectVGA_map.ncd proiectVGA.ncd proiectVGA.pcf 
 trce -filter C:/TemeISE/ProiectVga/iseconfig/filter.filter -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml proiectVGA.twx proiectVGA.ncd -o proiectVGA.twr proiectVGA.pcf -ucf fisierUcf.ucf 
 bitgen -filter "iseconfig/filter.filter" -intstyle ise -f proiectVGA.ut proiectVGA.ncd 
+xst -intstyle ise -filter "C:/TemeISE/ProiectVga/FPGAGalaxian/iseconfig/filter.filter" -ifn "C:/TemeISE/ProiectVga/FPGAGalaxian/proiectVGA.xst" -ofn "C:/TemeISE/ProiectVga/FPGAGalaxian/proiectVGA.syr" 
+ngdbuild -filter "iseconfig/filter.filter" -intstyle ise -dd _ngo -nt timestamp -uc fisierUcf.ucf -p xc6slx9-csg324-2 proiectVGA.ngc proiectVGA.ngd  
+map -filter "C:/TemeISE/ProiectVga/FPGAGalaxian/iseconfig/filter.filter" -intstyle ise -p xc6slx9-csg324-2 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o proiectVGA_map.ncd proiectVGA.ngd proiectVGA.pcf 
+par -filter "C:/TemeISE/ProiectVga/FPGAGalaxian/iseconfig/filter.filter" -w -intstyle ise -ol high -mt off proiectVGA_map.ncd proiectVGA.ncd proiectVGA.pcf 
+trce -filter C:/TemeISE/ProiectVga/FPGAGalaxian/iseconfig/filter.filter -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml proiectVGA.twx proiectVGA.ncd -o proiectVGA.twr proiectVGA.pcf -ucf fisierUcf.ucf 
+bitgen -filter "iseconfig/filter.filter" -intstyle ise -f proiectVGA.ut proiectVGA.ncd 
+xst -intstyle ise -filter "C:/TemeISE/ProiectVga/FPGAGalaxian/iseconfig/filter.filter" -ifn "C:/TemeISE/ProiectVga/FPGAGalaxian/proiectVGA.xst" -ofn "C:/TemeISE/ProiectVga/FPGAGalaxian/proiectVGA.syr" 
+ngdbuild -filter "iseconfig/filter.filter" -intstyle ise -dd _ngo -nt timestamp -uc fisierUcf.ucf -p xc6slx9-csg324-2 proiectVGA.ngc proiectVGA.ngd  
+map -filter "C:/TemeISE/ProiectVga/FPGAGalaxian/iseconfig/filter.filter" -intstyle ise -p xc6slx9-csg324-2 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o proiectVGA_map.ncd proiectVGA.ngd proiectVGA.pcf 
+par -filter "C:/TemeISE/ProiectVga/FPGAGalaxian/iseconfig/filter.filter" -w -intstyle ise -ol high -mt off proiectVGA_map.ncd proiectVGA.ncd proiectVGA.pcf 
+trce -filter C:/TemeISE/ProiectVga/FPGAGalaxian/iseconfig/filter.filter -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml proiectVGA.twx proiectVGA.ncd -o proiectVGA.twr proiectVGA.pcf -ucf fisierUcf.ucf 
+bitgen -filter "iseconfig/filter.filter" -intstyle ise -f proiectVGA.ut proiectVGA.ncd 

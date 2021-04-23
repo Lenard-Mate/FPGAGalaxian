@@ -1,10 +1,10 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-DESKTOP-T3C6S26::  Wed Apr 21 21:16:47 2021
+DESKTOP-T3C6S26::  Fri Apr 23 18:17:19 2021
 
-par -filter C:/TemeISE/ProiectVga/iseconfig/filter.filter -w -intstyle ise -ol
-high -mt off proiectVGA_map.ncd proiectVGA.ncd proiectVGA.pcf 
+par -filter C:/TemeISE/ProiectVga/FPGAGalaxian/iseconfig/filter.filter -w
+-intstyle ise -ol high -mt off proiectVGA_map.ncd proiectVGA.ncd proiectVGA.pcf 
 
 
 Constraints file: proiectVGA.pcf.
@@ -175,7 +175,7 @@ All signals are completely routed.
 Total REAL time to PAR completion: 5 secs 
 Total CPU time to PAR completion: 5 secs 
 
-Peak Memory Usage:  4533 MB
+Peak Memory Usage:  4532 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.

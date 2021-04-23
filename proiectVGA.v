@@ -18,22 +18,22 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-
+	
 module proiectVGA(
-  input clock,
-  input wire right,
-  input wire left,
-  input wire shot,
-  input wire resetValues,
-  output reg [2:0 ] red, 
-  output reg [2:0 ] green, 
-  output reg [1:0 ] blue,
-  output reg hsync, 
-  output reg vsync,
-  output reg [7:0] SSEG_CA,
-  output reg [7:0] SSEG_AN,
-  output reg [7:0] LEDS,
-  output speaker
+	input clock,
+	input wire right,
+	input wire left,
+	input wire shot,
+	input wire resetValues,
+	output reg [2:0 ] red, 
+	output reg [2:0 ] green, 
+	output reg [1:0 ] blue,
+	output reg hsync, 
+	output reg vsync,
+	output reg [7:0] SSEG_CA,
+	output reg [7:0] SSEG_AN,
+	output reg [7:0] LEDS,
+	output speaker
 );
 
 reg [9:0] hcount = 0;
@@ -54,130 +54,96 @@ integer number = 0;
 integer enemyAltitude=0;
 integer killCounter=0;
 
-
-
 //------------------------------------------------------------
 
+parameter h_pulse  			= 96;								//H-SYNC pulse width 96 * 40 ns (25 Mhz) = 3.84 uS
+parameter h_bp     			= 48;								//H-BP back porch pulse width
+parameter h_pixels  			= 640;							//H-PIX Numar pixeli orizontali
+parameter h_fp      			= 16;								//H-FP front porch pulse width
+parameter h_pol    			= 1'b0;							//H-SYNC polaritate
+parameter h_frame  			= 800;							//800 = 96 (H-SYNC) + 48 (H-BP) + 640 (H-PIX) + 16 (H-FP)
+parameter v_pulse   			= 2;								//V-SYNC pulse width
+parameter v_bp      			= 33;								//V-BP back porch pulse width
+parameter v_pixels  			= 480;							//V-PIX Numar pixeli verticali
+parameter v_fp      			= 10;								//V-FP front porch pulse width
+parameter v_pol     			= 1'b1;							//V-SYNC polaritate
+parameter v_frame   			= 525;							// 525 = 2 (V-SYNC) + 33 (V-BP) + 480 (V-PIX) + 10 (V-FP)
 
+parameter square_size 		= 10;								//marime patrat care v-om misca
+parameter init_x 				= 320;							//pozitie initiala X patrat
+parameter init_y 				= 240;							//pozitie initiala Y patrat
 
-parameter h_pulse   = 96;	//H-SYNC pulse width 96 * 40 ns (25 Mhz) = 3.84 uS
-parameter h_bp      = 48;	//H-BP back porch pulse width
-parameter h_pixels  = 640;	//H-PIX Number of pixels horisontally
-parameter h_fp      = 16;	//H-FP front porch pulse width
-parameter h_pol     = 1'b0;	//H-SYNC polarity
-parameter h_frame   = 800;	//800 = 96 (H-SYNC) + 48 (H-BP) + 640 (H-PIX) + 16 (H-FP)
-parameter v_pulse   = 2;	//V-SYNC pulse width
-parameter v_bp      = 33;	//V-BP back porch pulse width
-parameter v_pixels  = 480;	//V-PIX Number of pixels vertically
-parameter v_fp      = 10;	//V-FP front porch pulse width
-parameter v_pol     = 1'b1;	//V-SYNC polarity
-parameter v_frame   = 525;	// 525 = 2 (V-SYNC) + 33 (V-BP) + 480 (V-PIX) + 10 (V-FP)
+reg		[1:0]		clk_div;										// 2 bit counter
+wire					vga_clk;	
 
-parameter square_size = 10;	//size of the square we will move
-parameter init_x = 320;		//initial square position X
-parameter init_y = 240;		//initial square position Y
+assign 				vga_clk 	= clk_div[1];					// 25Mhz clock = 100Mhz divided by 2-bit counter
 
-reg	[1:0]		clk_div;	// 2 bit counter
-wire			vga_clk;	
-
-assign 	vga_clk 	= clk_div[1];		// 25Mhz clock = 100Mhz divided by 2-bit counter
-
-always @ (posedge clock) begin		// 2-bt counter ++ on each positive edge of 100Mhz clock
-	clk_div <= clk_div + 2'b1;
+always @ (posedge clock) begin								// 2-bt counter ++ on each positive edge of 100Mhz clock
+						clk_div <= clk_div + 2'b1;
 end
 
-//reg     [2:0]   	vga_r_r;	//VGA color registers R,G,B x 3 bit
-//reg     [2:0]   	vga_g_r;
-//reg     [2:0]   	vga_b_r;
-//reg             	vga_hs_r;	//H-SYNC register
-//reg             	vga_vs_r;	//V-SYNC register
-
-//assign 	red 		= vga_r_r;		//assign the output signals for VGA to the VGA registers
-//assign 	green 	= vga_g_r;
-//assign 	blue 		= vga_b_r;
-//assign 	hsync 	= vga_hs_r;
-//assign 	vsync 	= vga_vs_r;
-
-reg     [7:0]		timer_t = 8'b0;	// 8 bit timer with 0 initialization
+reg		[7:0]		timer_t = 8'b0;							// 8 bit timer with 0 initialization
 reg             	reset = 1;	
-reg     [9:0]   	c_row;		//complete frame register row
-reg     [9:0]   	c_col;		//complete frame register colum
-reg     [9:0]   	c_hor;		//visible frame register horisontally
-reg     [9:0]   	c_ver;		//visible  frame register vertically
+reg		[9:0]   	c_row;										//complete frame register row
+reg		[9:0]   	c_col;										//complete frame register colum
+reg		[9:0]   	c_hor;										//visible frame register horisontally
+reg		[9:0]   	c_ver;										//visible  frame register vertically
 
-reg			disp_en;	//display enable flag
+reg					disp_en;										//display enable flag
 
-reg	[9:0]		sq_pos_x;	//position of square center X, Y
-reg	[9:0]		sq_pos_y;
+reg		[9:0]		sq_pos_x;									//position of square center X, Y
+reg		[9:0]		sq_pos_y;
 
-wire	[9:0]		l_sq_pos_x;	//upper left and down right corners of the square
-wire	[9:0]		r_sq_pos_x;
-wire	[9:0]		u_sq_pos_y;
-wire	[9:0]		d_sq_pos_y;
+wire		[9:0]		l_sq_pos_x;									//upper left and down right corners of the square
+wire		[9:0]		r_sq_pos_x;
+wire		[9:0]		u_sq_pos_y;
+wire		[9:0]		d_sq_pos_y;
 
-assign 	l_sq_pos_x 	= sq_pos_x - square_size;
-assign 	r_sq_pos_x 	= sq_pos_x + square_size;
-assign 	u_sq_pos_y 	= sq_pos_y - square_size;
-assign 	d_sq_pos_y 	= sq_pos_y + square_size;
+assign 				l_sq_pos_x 	= sq_pos_x - square_size;
+assign 				r_sq_pos_x 	= sq_pos_x + square_size;
+assign 				u_sq_pos_y 	= sq_pos_y - square_size;
+assign 				d_sq_pos_y 	= sq_pos_y + square_size;
 
-//reg	[3:0]		ps2_cntr;		// 4-bit PS2 clock counter
-//reg	[7:0]		ps2_data_reg;		// 8-bit PS2 data register
-//reg	[7:0]		ps2_data_reg_prev;	// previous 8-bit PS data register
-//reg	[7:0]		ps2_data_reg_prev1;	// previous previous 8-bit data register
-//reg	[10:0]		ps2_dat_r;		// 11-bit complete PS2 frame register
+reg					u_arr = 0;									//PS2 arrow keys detect flags
+reg					l_arr = 0;
+reg					d_arr = 0;
+reg					r_arr = 0;
 
-//reg	[1:0]		ps2_clk_buf;		// PS2 clock buffer
-//wire			ps2_clk_pos;		// PS2 positive edge detected signal
+reg		[20:0]	arr_timer;									// delay between key service
+	
+reg		[19:0]	sq_figure	[0:19];
 
-reg			u_arr = 0;		//PS2 arrow keys detect flags
-reg			l_arr = 0;
-reg			d_arr = 0;
-reg			r_arr = 0;
+wire		[4:0]		sq_fig_x;
+wire		[4:0]		sq_fig_y;
 
-reg	[20:0]	arr_timer;	// delay between key service
-
-reg	[19:0]	sq_figure	[0:19];
-
-wire	[4:0]	sq_fig_x;
-wire	[4:0]	sq_fig_y;
-
-assign sq_fig_x = c_col - l_sq_pos_x;			// our figure's x axis when in square boundary
-assign sq_fig_y = c_row - u_sq_pos_y;			// our figure's y axis when in square boundary
-
-
+assign 				sq_fig_x = c_col - l_sq_pos_x;		// our figure's x axis when in square boundary
+assign 				sq_fig_y = c_row - u_sq_pos_y;		// our figure's y axis when in square boundary
 
 //--------------------------------------------------------
 always @ (posedge clock)
 begin
-  if (counter == 3)
-  begin
-    counter <= 1'b0;
-    enable <= 1'b1;
-  end
-  else
-  begin
-    counter <= counter + 1'b1;
-    enable <= 1'b0;
-  end
+	if (counter == 3)
+		begin
+			counter <= 1'b0;
+			enable <= 1'b1;
+		end
+		else
+		begin
+			counter <= counter + 1'b1;
+			enable <= 1'b0;
+		end
 end
 
-
-
-
-  slow_clock S1 (clock, Clk_Slow); 
-  
-  
- initial begin
-        SSEG_AN <= 8'b11111110;             //start at first anode
-    end
+slow_clock S1 (clock, Clk_Slow); 
+    
+initial begin
+			SSEG_AN <= 8'b11111110;            				 //start at first anode
+	end
 	 
-
 always @ (posedge Clk_Slow)
 begin 
 
 		 case (faier_counter)
-         
-				
 				 0 : LEDS <= 8'b11111111;
 				 1 : LEDS <= 8'b01111111;
 				 2 : LEDS <= 8'b00111111;
@@ -191,8 +157,6 @@ begin
         endcase
 		  
 		  case (killCounter)
-         
-				
 				 0 : SSEG_CA <= 8'b00000010;
 				 1 : SSEG_CA <= 8'b10011110;
 				 2 : SSEG_CA <= 8'b00100100;
@@ -204,21 +168,10 @@ begin
 				 8 : SSEG_CA <= 8'b00000000;
 				 9 : SSEG_CA <= 8'b00011000;
 				 default : SSEG_CA <= 8'b11111111;
-        endcase
-		  
-		  
-		  
-		  
-		  
+        endcase  
+		  		  
 				case (SSEG_AN)
             8'b11111110: SSEG_AN <= 8'b11111110;
-           // 8'b11111101: SSEG_AN <= 8'b11111011;
-           // 8'b11111011: SSEG_AN <= 8'b11111110;
-           // 8'b11110111: SSEG_AN <= 8'b11101111;
-           // 8'b11101111: SSEG_AN <= 8'b11011111;
-           // 8'b11011111: SSEG_AN <= 8'b10111111;
-           // 8'b11111101: SSEG_AN <= 8'b01111111;    
-            //8'b01111111: SSEG_AN <= 8'b11111110;
         endcase
 	
 
@@ -234,300 +187,277 @@ case (killCounter)
 				 7 : add <= -45 ;
 				 8 : add <= 150 ;
 				 9 : add <= -50 ;
-        endcase
-       
-		
-	
-		if(right == 0)
-													begin 
-													
-													right_counter<=right_counter+5;
-													
-																if(fire == 0)							
-																begin
-																
-																	
-																	munition_position_orizont<=right_counter;
-																
-																end
-												
-													end
-												
-													
-		if(left == 0)
-													begin 
-													
-													right_counter<=right_counter-5;
-														if(fire == 0)							
-																begin
-																
-																
-																	munition_position_orizont<=right_counter;
-																
-																end
-													end
-												
-		if(shot == 0) 
-													begin
-													
-													if(permision == 1)begin
-														
-														permision <= 0;
-													end
-													
-													
-													fire <= 1;
-													
-													end
-													
-		if(shot == 1)  						begin
-		
-													permision <= 1;
-		
-													end
-		
-		if(fire == 1)							
-													begin
-													
-													
-													munition_position<=munition_position+10;
-												
-													end
-													
-		if(resetValues == 0) 						
-													begin
-													fire<=0;
-													munition_position<=0;
-													killCounter<=0;
-													enemyAltitude<=0;
-													faier_counter<=0;
-													end
-													
-		if(killCounter == 9 || faier_counter == 9) 						
-													begin
-													fire<=0;
-													munition_position<=0;
-													killCounter<=0;
-													enemyAltitude<=0;
-													faier_counter<=0;
-													end											
-		
-		if(munition_position == 350) 						
-													begin
-													fire<=0;
-													munition_position<=0;
-													munition_position_orizont<=right_counter;
-													faier_counter <= faier_counter+1;
-													end
-													
-	
-		if (enemyAltitude <= 480)		   begin
-																enemyAltitude <= enemyAltitude+5;
-													end
-													else
-															begin
-																enemyAltitude<=0;
-															end
-		if (enemyAltitude >= 350 - munition_position && 300 + add >= 200 + munition_position_orizont && 200 + add <=180 + munition_position_orizont)
-													begin
-															enemyAltitude<=0;
-															fire<=0;
-															munition_position<=0;
-															munition_position_orizont<=right_counter;
-															killCounter <= killCounter+1;
-															
-													end
-													
+        endcase      
+			
+if(right == 0)
+	begin 
+	right_counter<=right_counter+5;
+	if(fire == 0)		
+		begin					
+		munition_position_orizont<=right_counter;
+		end
+	end
+if(left == 0)
+	begin 
+	right_counter<=right_counter-5;
+	if(fire == 0)	
+		begin					
+		munition_position_orizont<=right_counter;						
+		end
+	end
+if(shot == 0) 
+	begin
+	if(permision == 1)
+		begin				
+		permision <= 0;
+		end
+	fire <= 1;
+	end
+if(shot == 1)  						
+	begin
+	permision <= 1;
+	end
+if(fire == 1)							
+	begin
+	munition_position<=munition_position+10;
+	end
+if(resetValues == 0) 						
+	begin
+	fire<=0;
+	munition_position<=0;
+	killCounter<=0;
+	enemyAltitude<=0;
+	faier_counter<=0;
+	end
+if(killCounter == 9 || faier_counter == 9) 
+	begin
+	fire<=0;
+	munition_position<=0;
+	killCounter<=0;
+	enemyAltitude<=0;
+	faier_counter<=0;
+	end	
+if(munition_position == 350) 						
+	begin
+	fire<=0;
+	munition_position<=0;
+	munition_position_orizont<=right_counter;
+	faier_counter <= faier_counter+1;
+	end							
+if (enemyAltitude <= 480)		 
+	begin
+	enemyAltitude <= enemyAltitude+5;
+	end
+	else
+			begin
+			enemyAltitude<=0;
+			end
+if (enemyAltitude >= 350 - munition_position && 300 + add >= 200 + munition_position_orizont && 200 + add <=180 + munition_position_orizont)
+	begin
+	enemyAltitude<=0;
+	fire<=0;
+	munition_position<=0;
+	munition_position_orizont<=right_counter;
+	killCounter <= killCounter+1;
+	end
 end
 
- music M1 (.clk(vga_clk), .speaker(speaker));
- always @(posedge clock) begin
- if(timer_t > 250) begin					// generate 10 uS RESET signal 
+music M1 (.clk(vga_clk), .speaker(speaker));
+always @(posedge clock) 
+begin
+	if(timer_t > 250) 
+		begin					// generate 10 uS RESET signal 
 		reset <= 0;
-	end
-	else begin
-		reset <= 1;					//while in reset display is disabled, suare is set to initial position
-		timer_t <= timer_t + 1;
-		disp_en <= 0;			
-		sq_pos_x <= init_x;				
-		sq_pos_y <= init_y;
-	end
-if (killCounter<7)begin	
-  if (enable == 1)
-  begin
-    if(hcount == 799)
-    begin
-      hcount <= 0;
-      if(vcount == 524)
-        vcount <= 0;
-      else 
-        vcount <= vcount+1'b1;
-    end
-    else
-      hcount <= hcount+1'b1;
- 
- 
-  if (vcount >= 490 && vcount < 492) 
-    vsync <= 1'b0;
-  else
-    vsync <= 1'b1;
+		end
+		else 
+			begin
+			reset <= 1;					//while in reset display is disabled, square is set to initial position
+			timer_t <= timer_t + 1;
+			disp_en <= 0;			
+			sq_pos_x <= init_x;				
+			sq_pos_y <= init_y;
+			end
+	if (killCounter<7)
+		begin	
+		if (enable == 1)
+			begin
+			if(hcount == 799)
+				begin
+				hcount <= 0;
+				if(vcount == 524)
+					vcount <= 0;
+					else 
+						vcount <= vcount+1'b1;
+				end
+				else
+					hcount <= hcount+1'b1; 
+					if (vcount >= 490 && vcount < 492) 
+						vsync <= 1'b0;
+						else
+							vsync <= 1'b1;
+							if (hcount >= 656 && hcount < 752) 
+								hsync <= 1'b0;
+								else
+									hsync <= 1'b1;
+			end
+		end  
+else 
 
-  if (hcount >= 656 && hcount < 752) 
-    hsync <= 1'b0;
-  else
-    hsync <= 1'b1;
-  end
-end  
-else begin
+begin
 
-if(c_hor < h_pixels + h_fp + 1 || c_hor > h_pixels + h_fp + h_pulse) begin	// H-SYNC generator
-		hsync <= ~h_pol;
+if(c_hor < h_pixels + h_fp + 1 || c_hor > h_pixels + h_fp + h_pulse) 
+	begin	// H-SYNC generator
+	hsync <= ~h_pol;
 	end
-	else begin
+	else 
+		begin
 		hsync <= h_pol;
-	end
-	if(c_ver < v_pixels + v_fp || c_ver > v_pixels + v_fp + v_pulse) begin		//V-SYNC generator
+		end
+	if(c_ver < v_pixels + v_fp || c_ver > v_pixels + v_fp + v_pulse) 
+		begin		//V-SYNC generator
 		vsync <= ~v_pol;
-	end
-	else begin
+		end
+	else 
+		begin
 		vsync <= v_pol;
-	end
-
-
- end
-
-
-  if (enable)
-				begin                  
-						
-												 
-												 
-											 	 if (hcount < 240 + right_counter && hcount > 140 + right_counter && vcount < 480 && vcount > 400)
-												 begin
-													green <= 3'b111;
-													blue <= 2'b11; 
-													red <= 3'b111;
-												 end
-												  else 
-												if (hcount < 210 + right_counter && hcount > 170 + right_counter && vcount < 410 && vcount > 350)  
-												 begin
-													green <= 3'b111;
-													blue <= 2'b11; 
-													red <= 3'b000;
-												 end
-												 else
-												 if (hcount < 200 + munition_position_orizont && hcount > 180 + munition_position_orizont && vcount < 410 - munition_position && vcount > 350 - munition_position)  
-												 begin
-													green <= 3'b111;
-													blue <= 2'b11; 
-													red <= 3'b000;
-												 end
-												 else
-												 if (hcount < 300 + add && hcount > 200 + add  && vcount < 0 + enemyAltitude  && vcount > -70 + enemyAltitude)  
-												 begin
-													green <= 3'b000;
-													blue <= 2'b00; 
-													red <= 3'b111;
-												 end
-												 else
-												 if(killCounter >=7)begin 
-													if(reset == 1) begin					//while RESET is high init counters
-	
-	
-		sq_figure[0][19:0] <=	20'b11011011111011000011;
-		sq_figure[1][19:0] <=	20'b11011011111011000011;
-		sq_figure[2][19:0] <=	20'b11011010011011000011;
-		sq_figure[3][19:0] <=	20'b11011010011011000011;
-		sq_figure[4][19:0] <=	20'b11011010011011000011;
-		sq_figure[5][19:0] <=	20'b11011010011011111111;
-		sq_figure[6][19:0] <=	20'b11011010011011000000;
-		sq_figure[7][19:0] <=	20'b11011010011011000000;
-		sq_figure[8][19:0] <=	20'b11011010011011000000;
-		sq_figure[9][19:0] <=	20'b11111011111011000000;
-		sq_figure[10][19:0] <=	20'b00000000000000000000;
-		sq_figure[11][19:0] <=	20'b11000110111011011011;
-		sq_figure[12][19:0] <=	20'b11100110111011011011;
-		sq_figure[13][19:0] <=	20'b11100110000011011011;
-		sq_figure[14][19:0] <=	20'b11110110111011011011;
-		sq_figure[15][19:0] <=	20'b11011110111011011011;
-		sq_figure[16][19:0] <=	20'b11001110111011011011;
-		sq_figure[17][19:0] <=	20'b11001110111011011011;
-		sq_figure[18][19:0] <=	20'b11001110111011111111;
-		sq_figure[19][19:0] <=	20'b11000110111011111111;
-	
-		c_hor <= 0;
-		c_ver <= 0;
-		hsync <= 1;
-		vsync <= 0;
-		c_row <= 0;
-		c_col <= 0;
-	end
-	else begin						// update current beam position
-		if(c_hor < h_frame - 1) begin
-			c_hor <= c_hor + 1;
 		end
-		else begin
-			c_hor <= 0;
-			if(c_ver < v_frame - 1) begin
-				c_ver <= c_ver + 1;
-			end
-			else begin
-				c_ver <= 0;
-			end
+end
+
+
+if (enable)
+	begin                
+	if (hcount < 240 + right_counter && hcount > 140 + right_counter && vcount < 480 && vcount > 400)
+		begin
+		green <= 3'b111;
+		blue <= 2'b11; 
+		red <= 3'b111;
 		end
-	end
-	
-	if(c_hor < h_pixels) begin		//c_col and c_row counters are updated only in the visible time-frame
+		else 
+			if (hcount < 210 + right_counter && hcount > 170 + right_counter && vcount < 410 && vcount > 350)  
+				begin
+				green <= 3'b111;
+				blue <= 2'b11; 
+				red <= 3'b000;
+				end
+				else
+					if (hcount < 200 + munition_position_orizont && hcount > 180 + munition_position_orizont && vcount < 410 - munition_position && vcount > 350 - munition_position)  
+						begin
+						green <= 3'b111;
+						blue <= 2'b11; 
+						red <= 3'b000;
+						end
+						else
+							if (hcount < 300 + add && hcount > 200 + add  && vcount < 0 + enemyAltitude  && vcount > -70 + enemyAltitude)  
+								begin
+								green <= 3'b000;
+								blue <= 2'b00; 
+								red <= 3'b111;
+								end
+								else
+									if(killCounter >=7)
+									begin 
+										if(reset == 1) 
+										begin					//while RESET is high init counters
+										sq_figure[0][19:0] <=	20'b11011011111011000011;
+										sq_figure[1][19:0] <=	20'b11011011111011000011;
+										sq_figure[2][19:0] <=	20'b11011010011011000011;
+										sq_figure[3][19:0] <=	20'b11011010011011000011;
+										sq_figure[4][19:0] <=	20'b11011010011011000011;
+										sq_figure[5][19:0] <=	20'b11011010011011111111;
+										sq_figure[6][19:0] <=	20'b11011010011011000000;
+										sq_figure[7][19:0] <=	20'b11011010011011000000;
+										sq_figure[8][19:0] <=	20'b11011010011011000000;
+										sq_figure[9][19:0] <=	20'b11111011111011000000;
+										sq_figure[10][19:0] <=	20'b00000000000000000000;
+										sq_figure[11][19:0] <=	20'b11000110111011011011;
+										sq_figure[12][19:0] <=	20'b11100110111011011011;
+										sq_figure[13][19:0] <=	20'b11100110000011011011;
+										sq_figure[14][19:0] <=	20'b11110110111011011011;
+										sq_figure[15][19:0] <=	20'b11011110111011011011;
+										sq_figure[16][19:0] <=	20'b11001110111011011011;
+										sq_figure[17][19:0] <=	20'b11001110111011011011;
+										sq_figure[18][19:0] <=	20'b11001110111011111111;
+										sq_figure[19][19:0] <=	20'b11000110111011111111;
+									
+										c_hor <= 0;
+										c_ver <= 0;
+										hsync <= 1;
+										vsync <= 0;
+										c_row <= 0;
+										c_col <= 0;
+										end
+										else 
+											begin						// update current beam position
+											if(c_hor < h_frame - 1) 
+												begin
+												c_hor <= c_hor + 1;
+												end
+												else 
+													begin
+													c_hor <= 0;
+													if(c_ver < v_frame - 1) 
+														begin
+														c_ver <= c_ver + 1;
+														end
+														else 
+															begin
+															c_ver <= 0;
+															end
+													end
+											end
+											if(c_hor < h_pixels) 
+												begin		//c_col and c_row counters are updated only in the visible time-frame
 		c_col <= c_hor;
 	end
-	if(c_ver < v_pixels) begin
+	if(c_ver < v_pixels) 
+	begin
 		c_row <= c_ver;
 	end
-	if(c_hor < h_pixels && c_ver < v_pixels) begin		//VGA color signals are enabled only in the visible time frame
+	if(c_hor < h_pixels && c_ver < v_pixels) 
+	begin		//VGA color signals are enabled only in the visible time frame
 		disp_en <= 1;
 	end
-	else begin
+	else 
+	begin
 		disp_en <= 0;
 	end
-	if(disp_en == 1 && reset == 0) begin
-		 if(c_col > l_sq_pos_x && c_col < r_sq_pos_x && c_row > u_sq_pos_y && c_row < d_sq_pos_y) begin	//generate blue square
+	if(disp_en == 1 && reset == 0) 
+	begin
+		 if(c_col > l_sq_pos_x && c_col < r_sq_pos_x && c_row > u_sq_pos_y && c_row < d_sq_pos_y) 
+		 begin	//generate blue square
 			//vga_r_r <= 7;
 			//vga_g_r <= 0;
 			//vga_b_r <= 7;
-			if(sq_figure[sq_fig_y][sq_fig_x] == 1) begin
+			if(sq_figure[sq_fig_y][sq_fig_x] == 1) 
+			begin
 			red <= 7;
 			green <= 0;
 			blue <= 7;
 			end
-			else begin
+			else 
+			begin
 			red <= 0;
 			green <= 0;
 			blue <= 0;
 			end
-		end
-		else begin			//everything else is black
-			red <= 0;
-			green <= 0;
-			blue <= 0;
+			end
+			else 
+			begin			//everything else is black
+				red <= 0;
+				green <= 0;
+				blue <= 0;
+			end
 		end
 	end
+	else
+		begin 
+		green <= 3'b000;
+		blue <= 2'b00; 
+		red <= 3'b000;
+		end
 	end
-												 else
-												 begin 
-												   green <= 3'b000;
-													blue <= 2'b00; 
-													red <= 3'b000;
-												 end
-												
-												 
-												 
-					
-
-	 end
-	  arr_timer <= arr_timer + 1;
- end
-
-
+	arr_timer <= arr_timer + 1;
+end
 
 endmodule
 
@@ -546,11 +476,12 @@ end
 
 //this always block runs on the fast 100MHz clock
 
-    always @(posedge CLK) begin 
+   always @(posedge CLK) begin 
    counter_out<=counter_out + 32'h00000001; 
-   if (counter_out>32'h001EBC20) begin 
-       counter_out<=32'h00000000; 
-       Clk_Slow<=!Clk_Slow; 
+   if (counter_out>32'h001EBC20) 
+		begin 
+      counter_out<=32'h00000000; 
+      Clk_Slow<=!Clk_Slow; 
    end 
 end
 endmodule
